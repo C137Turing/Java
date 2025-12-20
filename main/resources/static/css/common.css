@@ -1,0 +1,93 @@
+/* 优化后的公共样式 - 透明导航栏 */
+
+/* 去除浏览器默认样式并设置全局字体 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 设定页面高度和基础样式 */
+html, body {
+    height: 100%;
+    background-color: rgba(10, 10, 21, 0.51);
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* 透明导航栏样式 - 匹配图片效果 */
+.nav {
+    height: 50px;
+    background: transparent; /* 完全透明 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    z-index: 100;
+    /* 移除所有背景色、阴影和边框 */
+    box-shadow: none;
+    border-bottom: none;
+}
+
+/* 导航栏图标容器 */
+.nav-icons {
+    display: flex;
+    gap: 15px;
+}
+
+/* 导航栏图标样式 - 调整为白色半透明 */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.nav-icon:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* 添加一些全局辅助类 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+
+    .nav-icons {
+        gap: 10px;
+    }
+
+    .nav-icon {
+        width: 18px;
+        height: 18px;
+    }
+}

@@ -1,0 +1,550 @@
+/* 主界面样式 - 优化版 */
+.client-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    width: 1000px;
+    height: 740px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+    display: flex;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.main .left {
+    width: 280px;
+    height: 100%;
+    background-color: rgb(46, 50, 56);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.main .right {
+    width: 720px;
+    height: 100%;
+    padding: 0 20px;
+    box-sizing: border-box; /* 重要：确保padding包含在宽度内 */
+    display: flex;
+    flex-direction: column;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/chat-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: blur(9px);
+    animation: subtleBackgroundShift 20s infinite alternate ease-in-out;
+}
+
+@keyframes subtleBackgroundShift {
+    0% { transform: scale(1) rotate(0.5deg); }
+    100% { transform: scale(1.02) rotate(-0.5deg); }
+}
+
+.main .left .user {
+    height: 80px;
+    font-size: 20px;
+    line-height: 80px;
+    color: white;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInDown 0.6s ease;
+}
+
+.main .left .search {
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    animation: fadeIn 0.8s ease 0.1s both;
+}
+
+.main .left .search input {
+    height: 34px;
+    width: 200px;
+    line-height: 34px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(38, 41, 46);
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.main .left .search input:focus {
+    width: 220px;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.main .left .search button {
+    height: 34px;
+    width: 34px;
+    border: none;
+    outline: none;
+    background-color: rgb(38, 41, 46);
+    border-radius: 5px;
+    background-image: url(../img/搜索.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: center center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.main .left .search button:hover {
+    background-color: rgb(58, 63, 70);
+    transform: scale(1.05);
+}
+
+.main .left .search button:active {
+    background-color: grey;
+    transform: scale(0.95);
+}
+
+.main .left .tab {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.8s ease 0.2s both;
+}
+
+.main .left .tab .tab-session,
+.main .left .tab .tab-friend {
+    height: 100%;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.7;
+}
+
+.main .left .tab .tab-session:hover,
+.main .left .tab .tab-friend:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main .left .tab .active {
+    opacity: 1;
+}
+
+.main .left .tab .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background-color: #4CAF50;
+    border-radius: 2px;
+}
+
+.main .left .tab .tab-session {
+    background-image: url(../img/对话.png);
+}
+
+.main .left .tab .tab-friend {
+    background-image: url(../img/用户2.png);
+}
+
+.main .left .list {
+    height: 570px;
+    overflow: auto;
+    animation: fadeIn 0.8s ease 0.3s both;
+}
+
+.main .left .list li {
+    height: 60px;
+    padding: 10px 20px;
+    color: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: slideInLeft 0.5s ease both;
+}
+
+.main .left .list li:nth-child(1) { animation-delay: 0.1s; }
+.main .left .list li:nth-child(2) { animation-delay: 0.15s; }
+.main .left .list li:nth-child(3) { animation-delay: 0.2s; }
+.main .left .list li:nth-child(4) { animation-delay: 0.25s; }
+
+.main .left .list li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.main .left .list .selected {
+    background-color: rgb(46, 54, 65);
+    border-left: 3px solid #4CAF50;
+}
+
+/* 这个样式是给会话列表使用的 */
+.main .left .list li h3,
+.main .left .list li p {
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    transition: all 0.3s ease;
+}
+
+/* 这个样式是给好友列表使用的 */
+.main .left .list li h4 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+/* 应用了这个 css 类的元素就会被自动隐藏 */
+.hide {
+    display: none;
+    animation: fadeOut 0.3s ease;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.main .right .title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    animation: fadeInDown 0.6s ease;
+    color: black;
+    flex-shrink: 0; /* 防止标题区域被压缩 */
+}
+
+.main .right .message-show {
+    flex: 1; /* 占据剩余空间 */
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow: auto;
+    animation: fadeIn 0.8s ease;
+    min-height: 0; /* 允许flex项收缩 */
+}
+
+.main .right .message-show .message {
+    margin-top: 10px;
+    display: flex;
+    animation: messageAppear 0.4s ease both;
+}
+
+@keyframes messageAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main .right .message-show .message-left {
+    justify-content: flex-start;
+}
+
+.main .right .message-show .message-right {
+    justify-content: flex-end;
+}
+
+.main .right .message-show .message .box {
+    width: auto;
+    max-width: 70%;
+}
+
+.main .right .message-show .message .box h4 {
+    font-weight: normal;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.main .right .message-show .message .box p {
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+    word-wrap: break-word;
+}
+
+.main .right .message-show .message .box p:hover {
+    transform: scale(1.02);
+}
+
+.main .right .message-show .message-left .box p {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.main .right .message-show .message-right .box p {
+    background-color: rgb(123, 181, 107);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.main .right .message-show .message-left .box h4 {
+    color: rgba(0, 0, 0, 0.71);
+}
+
+.main .right .message-show .message-right .box h4 {
+    color: rgba(0, 0, 0, 0.71);
+}
+.main .right .message-input {
+    display: block;
+    width: 100%;
+    height: 100px;
+    border: none;
+    outline: none;
+    margin-top: 2px;
+    margin-bottom: 0;
+    background-color: rgb(238, 238, 238);
+    padding: 10px;
+    resize: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-sizing: border-box; /* 确保padding包含在宽度内 */
+}
+
+.main .right .message-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.main .right .ctrl {
+    height: 35px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2px; /* 进一步减小间距 */
+    margin-bottom: 5px; /* 确保底部有空间 */
+    padding: 0 5px; /* 添加内边距防止按钮贴边 */
+    animation: fadeInUp 0.6s ease;
+    box-sizing: border-box; /* 确保padding包含在宽度内 */
+}
+
+.main .right .ctrl button {
+    height: 35px;
+    width: 100px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+    position: static;
+    margin: 0;
+}
+
+.main .right .ctrl button:hover {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.main .right .ctrl button:active {
+    background-color: #388E3C;
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+}
+
+/* 右侧内容区域布局优化 */
+.main .right .message-input-container {
+    flex-shrink: 0; /* 输入框区域不收缩 */
+    margin-top: auto; /* 确保输入框在底部 */
+    padding-top: 5px;
+}
+
+/* 动画关键帧 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 响应式设计增强 */
+@media (max-width: 1024px) {
+    .main {
+        width: 95%;
+        height: 95vh;
+    }
+
+    .main .right {
+        padding: 0 15px; /* 小屏幕减少内边距 */
+    }
+
+    .main .right .ctrl button {
+        width: 90px; /* 小屏幕适当减小按钮宽度 */
+    }
+}
+
+/* 确保按钮在非常小的屏幕上也不会溢出 */
+@media (max-width: 480px) {
+    .main .right {
+        padding: 0 10px;
+    }
+
+    .main .right .ctrl button {
+        width: 80px;
+        font-size: 12px;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 高亮动画 */
+.highlight {
+    animation: highlight 1.5s ease;
+}
+
+@keyframes highlight {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(76, 175, 80, 0.3); }
+    100% { background-color: transparent; }
+}
+
+
+
+/*----------------------------------------------------------------*/
+
+/* 消息时间样式 */
+.message .box .message-time {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    opacity: 0.8;
+    text-align: right;
+    padding: 0 5px;
+    transition: opacity 0.3s ease;
+}
+
+.message-left .box .message-time {
+    text-align: left;
+    color: #666;
+}
+
+.message-right .box .message-time {
+    text-align: right;
+    color:#666;
+}
+
+/* 消息盒子样式调整，为时间留出空间 */
+.message .box p {
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+
+.message .box:hover .message-time {
+    opacity: 1;
+}
+
+/* 调整消息气泡的最小高度，确保时间显示完整 */
+.message-left .box p {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+    min-height: 20px; /* 确保消息气泡有一定高度 */
+}
+
+.message-right .box p {
+    background-color: rgb(123, 181, 107);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+    min-height: 20px; /* 确保消息气泡有一定高度 */
+}
+
+
+
+
+
+
+
