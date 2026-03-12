@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客列表页</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/list.css">
+
+</head>
+<body>
+<div class="nav">
+    <img src="pic/logo2.jpg" alt="">
+    <span class="blog-title">我的博客系统</span>
+    <div class="space"></div>
+    <a class="nav-span" href="blog_list.html">主页</a>
+    <a class="nav-span" href="blog_edit.html">写博客</a>
+    <a class="nav-span" href="#" onclick="logout()">注销</a>
+</div>
+
+<div class="container">
+    <div class="left">
+        <div class="card">
+            <img src="pic/doge.jpg" alt="">
+            <h3></h3>
+            <a href="#">GitHub 地址</a>
+            <div class="row">
+                <span>文章</span>
+                <span>分类</span>
+            </div>
+            <div class="row">
+                <span>2</span>
+                <span>1</span>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/list.js"></script>
+<script>
+    $.ajax({
+        type: "get",
+        url: "blog/getlist",
+        success: function (ret) {
+            if(ret.code=="SUCCESS"&&ret.data!=null&&ret.data.length>0){
+                var finalHtml="";
+                for(var blogInfo of ret.data){
+                    finalHtml+=' <div class="blog">';
+                    finalHtml+='  <div class="title">'+blogInfo.title+'</div>';
+                    finalHtml+=' <div class="date">'+blogInfo.createTime+'</div>';
+                    finalHtml+='  <div class="desc">'+blogInfo.content+'</div>';
+                    finalHtml+='<a class="detail" href="blog_detail.html?blogId='+blogInfo.id+'">查看全文&gt;&gt;</a>';
+                    finalHtml+=' </div>';
+                }
+                $(".container .right").html(finalHtml);
+            }
+        }
+    })
+    $.ajax({
+        type: "get",
+        url: "user/getUserInfo?userId="+ localStorage.getItem("loginUserId"),
+        success:function (ret){
+            if(ret!=null&&ret.code=="SUCCESS"&&ret.data!=null){
+                let userInfo=ret.data;
+                $(".left .card h3").text(userInfo.userName);
+                $(".left .card a").attr("href",userInfo.githubUrl);
+            }
+        }
+    })
+</script>
+</body>
+</html>
